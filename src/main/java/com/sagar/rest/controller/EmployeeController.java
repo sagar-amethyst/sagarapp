@@ -336,7 +336,7 @@ public class EmployeeController {
 	@GetMapping("/tdrTestDataRepositoryAPIOnboarding-1.0.0/srv_api/getPrincipal")
 	@ResponseBody
 	@CrossOrigin("*")
-	public ResponseEntity<Authentication> getPrincipal() {
+	public ResponseEntity<List<Authentication>> getPrincipal() {
 		List<String> grantedScopes = Arrays.asList("de-Dev-Test-security!t7220.SystemOnBoarder","tde-Dev-Test-security!t7220.MyApproval",
 				"tde-Dev-Test-security!t7220.MyRequest",
 				"openid","tde-Dev-Test-security!t7220.Analytics","tde-Dev-Test-security!t7220.ManageTag","tde-Dev-Test-security!t7220.APIOnBoarder",
@@ -346,7 +346,9 @@ public class EmployeeController {
 		Authentication auth =new Authentication();
 		auth.setEmail("bhuiya.sagar@sap.com");
 		auth.setGrantedScopes(grantedScopes);
+		List<Authentication> list=new ArrayList<Authentication>();
+		list.add(auth);
 		System.out.println(auth);
-		return new ResponseEntity<Authentication>(auth, HttpStatus.OK);
+		return new ResponseEntity<List<Authentication>>(list, HttpStatus.OK);
 	}	
 }
